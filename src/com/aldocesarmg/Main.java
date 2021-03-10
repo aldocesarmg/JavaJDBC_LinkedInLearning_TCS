@@ -1,5 +1,7 @@
 package com.aldocesarmg;
 
+import com.aldocesarmg.db.tables.Tours;
+
 import java.sql.*;
 
 public class Main {
@@ -10,13 +12,15 @@ public class Main {
                 // esta sentencia de try catch
                 Connection conexion = DBUtil.getConnection(DBType.MYSQL);
                 Statement stmt = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                ResultSet rs = stmt.executeQuery("SELECT * FROM states");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM tours");
                 ) {
 
             System.out.println("Connected");
 
-            rs.last();
-            System.out.println("Number of rows: " + rs.getRow());
+            Tours.displayData(rs);
+
+            //rs.last();
+            //System.out.println("Number of rows: " + rs.getRow());
 
         } catch (SQLException throwables) {
             System.err.println(throwables);
