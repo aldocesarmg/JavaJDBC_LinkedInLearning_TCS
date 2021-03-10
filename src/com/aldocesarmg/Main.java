@@ -4,17 +4,13 @@ import java.sql.*;
 
 public class Main {
 
-    private static final String USERNAME = "dbuser";
-    private static final String PASSWORD = "dbpassword";
-    private static final String CONN_STRING = "jdbc:mysql://localhost/explorecalifornia";
-
     public static void main(String[] args) throws SQLException {
         Connection conexion = null;
         Statement stmt = null;
         ResultSet rs = null;
 
         try {
-            conexion = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            conexion = DBUtil.getConnection(DBType.MYSQL);
             System.out.println("Connected");
 
             stmt = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
